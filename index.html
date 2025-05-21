@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serioexec - Executores</title>
+  <style>
+    :root {
+      --bg-color: #0d0b1a;
+      --text-color: #e0d7ff;
+      --card-bg: #1a132d;
+      --primary: #9c5fff;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    body.light {
+      --bg-color: #f2eaff;
+      --text-color: #2a004f;
+      --card-bg: #ffffff;
+      --primary: #7e3bdc;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      padding: 0 1rem;
+    }
+
+    .filter-select {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: none;
+      background: var(--card-bg);
+      color: var(--text-color);
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px var(--shadow);
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .toggle-theme {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px var(--shadow);
+      cursor: pointer;
+    }
+
+    .banner-wrapper {
+      position: relative;
+      width: 100%;
+      max-height: 250px;
+      overflow: hidden;
+    }
+
+    .banner-wrapper img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .banner-text {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+    }
+
+    .banner-text h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .banner-text p {
+      font-size: 1rem;
+      margin-top: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .executors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .executor-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .executor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px var(--shadow);
+    }
+
+    .executor-card img {
+      width: 80px;
+      margin-bottom: 1rem;
+    }
+
+    .executor-card h3 {
+      margin: 0.5rem 0;
+    }
+
+    .executor-card p {
+      font-size: 0.95rem;
+    }
+
+    .executor-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .executor-card a:hover {
+      background: #7f45e2;
+    }
+  </style>
+</head>
+<body onload="filterExecutors()">
+  <div class="top-bar">
+    <select id="platformFilter" class="filter-select" onchange="filterExecutors()">
+      <option value="">Todas</option>
+      <option value="Windows">Windows</option>
+      <option value="Android" selected>Android</option>
+      <option value="iOS">iOS</option>
+    </select>
+    <button class="toggle-theme" onclick="toggleTheme()">Alternar Tema</button>
+  </div>
+
+  <div class="banner-wrapper">
+    <img src="https://cdn.discordapp.com/attachments/1311484508003893398/1374836653113475233/0287d3ba8b3330fca99f69e2001d3168.gif?ex=682f7fe9&is=682e2e69&hm=4b2a6d41ec96f7f39a7f6e476a1ff6cdbddd20bbd6997140bd4c9abfecf424d8&" alt="Banner" />
+    <div class="banner-text">
+      <h1>Serioexec</h1>
+      <p>Descubra os principais executores para cada plataforma.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="executors" id="executorList">
+      <div class="executor-card" data-name="Fluxus" data-platform="Android">
+        <img src="https://images.icon-icons.com/3913/PNG/512/fluxus_logo_icon_248527.png" alt="Fluxus" />
+        <h3>Fluxus</h3>
+        <p>Executor bom</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">Download</a>
+      </div>
+
+      <div class="executor-card" data-name="Codex" data-platform="Android">
+        <img src="https://easyexploits.com/exploitimgs/cdex.png" alt="Codex" />
+        <h3>Codex</h3>
+        <p>Executor rápido para Android com interface amigável.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">Baixar APK</a>
+      </div>
+
+      <div class="executor-card" data-name="Arceus X" data-platform="Android">
+        <img src="https://static.wikia.nocookie.net/kaijuwikia/images/9/96/Arceus.png/revision/latest?cb=20200316023236" alt="Arceus X" />
+        <h3>Arceus X</h3>
+        <p>Executor popular de scripts para Roblox no Android.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">Download</a>
+      </div>
+
+      <div class="executor-card" data-name="Delta" data-platform="Android">
+        <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta" />
+        <h3>Delta</h3>
+        <p>Executor moderno para dispositivos iOS com excelente desempenho.</p>
+        <a href="https://deltaexploits.gg/android_dl" target="_blank" rel="noopener noreferrer">Instalar</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+
+    function filterExecutors() {
+      const platform = document.getElementById("platformFilter").value;
+      const executors = document.querySelectorAll(".executor-card");
+
+      executors.forEach(card => {
+        const cardPlatform = card.getAttribute("data-platform");
+        const matchPlatform = !platform || cardPlatform === platform;
+        card.style.display = matchPlatform ? "block" : "none";
+      });
+    }
+  </script>
+</body>
+</html>
