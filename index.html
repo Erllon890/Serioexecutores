@@ -68,6 +68,7 @@
       width: 100%;
       max-height: 250px;
       overflow: hidden;
+      padding-bottom: 1.5rem; /* espaço extra embaixo */
     }
 
     .banner-wrapper img {
@@ -77,11 +78,35 @@
 
     .banner-text {
       position: absolute;
-      top: 30%;
+      top: 17%;             /* ajustado de 30% para 25% */
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
       color: white;
+      padding: 0 1rem;
+    }
+
+    .banner-text .profile-pic {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto 1rem;
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(156, 95, 255, 0.7));
+      animation: fadeInPurple 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeInPurple {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .banner-text h1 {
@@ -166,89 +191,84 @@
   <div class="banner-wrapper">
     <img src="https://cdn.discordapp.com/attachments/1311484508003893398/1374836653113475233/0287d3ba8b3330fca99f69e2001d3168.gif?ex=682f7fe9&is=682e2e69&hm=4b2a6d41ec96f7f39a7f6e476a1ff6cdbddd20bbd6997140bd4c9abfecf424d8&" alt="Banner" />
     <div class="banner-text">
-      <h1>Serioexec</h1>
-      <p>Descubra os principais executores para cada plataforma.</p>
+      <img
+        class="profile-pic"
+        src="https://cdn.discordapp.com/attachments/1311484508003893398/1374902118900564080/250px-Gatto_europeo4_1.jpg?ex=682fbce1&is=682e6b61&hm=dae76f8425853f6213dbdc14c9c1da80117d101ae049bfaa67dcdd4c22f1177c&"
+        alt="Foto de perfil"
+      />
+      <h1>SerioExec</h1>
+      <p>🎖️Tem que respeita 🎖️</p>
     </div>
   </div>
 
   <div class="container">
     <div class="executors" id="executorList">
-      <!-- Lista completa de executores -->
       <div class="executor-card" data-name="Delta" data-platform="Android">
         <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta" />
         <h3>Delta</h3>
         <p>Executor top bem utimizado igual o fluxo!</p>
         <a href="https://deltaexploits.gg/android_dl" target="_blank" rel="noopener noreferrer">Instalar</a>
       </div>
-
       <div class="executor-card" data-name="Fluxus" data-platform="Android">
         <img src="https://images.icon-icons.com/3913/PNG/512/fluxus_logo_icon_248527.png" alt="Fluxus" />
         <h3>Fluxus</h3>
         <p>Executor Top, recomendo!</p>
         <a href="https://stickx.top/download/Fluxus.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
-
       <div class="executor-card" data-name="Codex" data-platform="Android">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6FzTc_eLrlpPNjYuMoa_2kBs4JcMzbiGuURQO1YxZjiA6pE9Koc58FWIg&s=10" alt="Codex" />
         <h3>Codex</h3>
         <p>Executor rápido para Android com interface amigável.</p>
         <a href="https://stickx.top/download/CodeX.apk" target="_blank" rel="noopener noreferrer">Baixar APK</a>
       </div>
-
       <div class="executor-card" data-name="Arceus X" data-platform="Android">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_FANfIiinyu5ccWXyA88ocVvpaOMaCiTQ3-OMXWPNzbCn4PKS0oQVVA&s=10" alt="Arceus X" />
         <h3>Arceus X Neo</h3>
         <p>Executor popular de scripts para Roblox no Android.</p>
         <a href="https://stickx.top/download/ArceusX.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
-
       <div class="executor-card" data-name="Vega X" data-platform="Android">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYX9In5ZYK4Bz6tbTFUf6Y9qaqfn9GsqYbWrIVfzvALw&s" alt="Vega X" />
         <h3>Vega X</h3>
         <p>Executor leve e eficiente para Roblox no Android.</p>
         <a href="https://stickx.top/download/VegaX.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
-
       <div class="executor-card" data-name="Crypitc" data-platform="Android">
         <img src="https://avatars.githubusercontent.com/u/207789171?s=200&v=4" alt="Crypitc" />
         <h3>Crypitc</h3>
         <p>Executor Android moderno e com boa compatibilidade.</p>
         <a href="https://stickx.top/download/Cryptic.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
-
       <div class="executor-card" data-name="Krnl" data-platform="Android">
         <img src="https://avatars.githubusercontent.com/u/210202191?s=200&v=4" alt="Krnl" />
         <h3>Krnl</h3>
         <p>Versão Android do famoso executor KRNL.</p>
         <a href="https://stickx.top/download/Krnl.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
-
       <div class="executor-card" data-name="KrnlVNG" data-platform="Android">
         <img src="https://avatars.githubusercontent.com/u/210202191?s=200&v=4" alt="KrnlVNG" />
         <h3>KrnlVNG</h3>
-        <p>modelo para grigos Viatina.</p>
+        <p>Modelo para gringos Viatina.</p>
         <a href="https://stickx.top/download/KrnlVNG.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
-<div class="executor-card" data-name="Delta iOS" data-platform="iOS">
-  <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta iOS" />
-  <h3>Delta iOS</h3>
-  <p>Executor para dispositivos iOS da linha Delta.</p>
-  <a href="https://stickx.top/download/Deltax.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
-</div>
-
-<div class="executor-card" data-name="Arceus X iOS" data-platform="iOS">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_FANfIiinyu5ccWXyA88ocVvpaOMaCiTQ3-OMXWPNzbCn4PKS0oQVVA&s=10" alt="Arceus X iOS" />
-  <h3>Arceus X iOS</h3>
-  <p>Versão iOS do executor Arceus X para Roblox.</p>
-  <a href="https://stickx.top/download/Arceusx.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
-</div>
-
-<div class="executor-card" data-name="Codex iOS" data-platform="iOS">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6FzTc_eLrlpPNjYuMoa_2kBs4JcMzbiGuURQO1YxZjiA6pE9Koc58FWIg&s=10" alt="Codex iOS" />
-  <h3>Codex iOS</h3>
-  <p>Executor Codex agora disponível para iOS.</p>
-  <a href="https://stickx.top/download/Codex.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
-</div>
+      <div class="executor-card" data-name="Delta iOS" data-platform="iOS">
+        <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta iOS" />
+        <h3>Delta iOS</h3>
+        <p>Executor para dispositivos iOS da linha Delta.</p>
+        <a href="https://stickx.top/download/Deltax.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
+      </div>
+      <div class="executor-card" data-name="Arceus X iOS" data-platform="iOS">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_FANfIiinyu5ccWXyA88ocVvpaOMaCiTQ3-OMXWPNzbCn4PKS0oQVVA&s=10" alt="Arceus X iOS" />
+        <h3>Arceus X iOS</h3>
+        <p>Versão iOS do executor Arceus X para Roblox.</p>
+        <a href="https://stickx.top/download/Arceusx.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
+      </div>
+      <div class="executor-card" data-name="Codex iOS" data-platform="iOS">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6FzTc_eLrlpPNjYuMoa_2kBs4JcMzbiGuURQO1YxZjiA6pE9Koc58FWIg&s=10" alt="Codex iOS" />
+        <h3>Codex iOS</h3>
+        <p>Executor Codex agora disponível para iOS.</p>
+        <a href="https://stickx.top/download/Codex.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
+      </div>
     </div>
   </div>
 
@@ -260,11 +280,9 @@
     function filterExecutors() {
       const platform = document.getElementById("platformFilter").value;
       const executors = document.querySelectorAll(".executor-card");
-
       executors.forEach(card => {
         const cardPlatform = card.getAttribute("data-platform");
-        const matchPlatform = !platform || cardPlatform === platform;
-        card.style.display = matchPlatform ? "block" : "none";
+        card.style.display = (!platform || cardPlatform === platform) ? "block" : "none";
       });
     }
   </script>
