@@ -40,6 +40,12 @@
       padding: 0 1rem;
     }
 
+    .right-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .filter-select {
       padding: 0.5rem 1rem;
       border-radius: 20px;
@@ -68,7 +74,7 @@
       width: 100%;
       max-height: 250px;
       overflow: hidden;
-      padding-bottom: 1.5rem; /* espaço extra embaixo */
+      padding-bottom: 1.5rem;
     }
 
     .banner-wrapper img {
@@ -78,7 +84,7 @@
 
     .banner-text {
       position: absolute;
-      top: 17%;             /* ajustado de 30% para 25% */
+      top: 17%;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -109,15 +115,89 @@
       }
     }
 
-    .banner-text h1 {
-      font-size: 2rem;
-      margin: 0;
+    .platform-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      animation: slideIn 0.5s ease-out;
+      box-shadow: 0 2px 6px var(--shadow);
     }
 
-    .banner-text p {
+    @keyframes slideIn {
+      from {
+        transform: translateX(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .premium-badge {
+      background: #ffd700;
+      color: #2a004f;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: -0.5rem auto 0.5rem;
+      animation: pulse 2s infinite;
+      box-shadow: 0 2px 4px var(--shadow);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    body.light .premium-badge {
+      background: #c5a100;
+      color: white;
+    }
+
+    .platform-notification {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
       font-size: 1rem;
-      margin-top: 0.8rem;
-      opacity: 0.9;
+      box-shadow: 0 8px 20px var(--shadow);
+      opacity: 0;
+      animation: notify 4s ease-out;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    @keyframes notify {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      20% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      80% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
     }
 
     .container {
@@ -133,6 +213,7 @@
     }
 
     .executor-card {
+      position: relative;
       background: var(--card-bg);
       border-radius: 12px;
       padding: 1.5rem 1rem;
@@ -177,7 +258,7 @@
     }
   </style>
 </head>
-<body onload="filterExecutors()">
+<body onload="init()">
   <div class="top-bar">
     <select id="platformFilter" class="filter-select" onchange="filterExecutors()">
       <option value="">Todas</option>
@@ -185,7 +266,10 @@
       <option value="Android" selected>Android</option>
       <option value="iOS">iOS</option>
     </select>
-    <button class="toggle-theme" onclick="toggleTheme()">Alternar Tema</button>
+    
+    <div class="right-section">
+      <button class="toggle-theme" onclick="toggleTheme()">Alternar Tema</button>
+    </div>
   </div>
 
   <div class="banner-wrapper">
@@ -203,13 +287,14 @@
 
   <div class="container">
     <div class="executors" id="executorList">
+      <!-- Lista de Executors -->
       <div class="executor-card" data-name="Delta" data-platform="Android">
         <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta" />
         <h3>Delta</h3>
         <p>Executor top bem utimizado igual o fluxo!</p>
         <a href="https://deltaexploits.gg/android_dl" target="_blank" rel="noopener noreferrer">Instalar</a>
       </div>
-      <div class="executor-card" data-name="Fluxus" data-platform="Android">
+<div class="executor-card" data-name="Fluxus" data-platform="Android">
         <img src="https://images.icon-icons.com/3913/PNG/512/fluxus_logo_icon_248527.png" alt="Fluxus" />
         <h3>Fluxus</h3>
         <p>Executor Top, recomendo!</p>
@@ -269,17 +354,74 @@
         <p>Executor Codex agora disponível para iOS.</p>
         <a href="https://stickx.top/download/Codex.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
       </div>
+      <div class="executor-card" data-name="Wave" data-platform="Windows">
+        <img src="https://pbs.twimg.com/profile_images/1775946212522496000/II3o8QCb_200x200.png" alt="Wave" />
+        <h3>Wave</h3>
+        <div class="premium-badge">PREMIUM</div>
+        <p>Executor premium para PC com suporte a scripts complexos</p>
+        <a href="https://getwave.gg/" target="_blank" rel="noopener noreferrer">Download PC</a>
+      </div>
+
+      <!-- Outros executors Windows -->
+      <div class="executor-card" data-name="SubZero" data-platform="Windows">
+        <img src="https://cdn.wearedevs.net/images/thumbnails/SubZero-051625.webp" alt="SubZero" />
+        <h3>SubZero (Fluxo PC)</h3>
+        <p>Versão PC do famoso executor Fluxus com interface aprimorada</p>
+        <a href="https://getsubz.xyz/" target="_blank" rel="noopener noreferrer">Baixar</a>
+      </div>
+<div class="executor-card" data-name="Nezur" data-platform="Windows">
+            <img src="https://framerusercontent.com/images/JHdhIcC3tGjhFhq5d2jB104VkR4.webp" alt="Nezur" />
+            <h3>Nezur</h3>
+            <p>Executor Windows estável para diversos jogos</p>
+            <a href="https://nezur.io/" target="_blank" rel="noopener noreferrer">Instalar</a>
+        </div>
+
+        <div class="executor-card" data-name="Xeno" data-platform="Windows">
+            <img src="https://cdn.wearedevs.net/images/thumbnails/xeno-0131252.webp" alt="Xeno" />
+            <h3>Xeno</h3>
+            <p>Executor poderoso para PC com atualizações constantes</p>
+            <a href="https://www.xeno.onl/download" target="_blank" rel="noopener noreferrer">Download</a>
+        </div>
+      <!-- ... (demais executors) ... -->
+      
     </div>
   </div>
 
   <script>
+    function init() {
+      addPlatformTags();
+      filterExecutors();
+    }
+
+    function addPlatformTags() {
+      const cards = document.querySelectorAll('.executor-card');
+      cards.forEach(card => {
+        const platform = card.getAttribute('data-platform');
+        const tag = document.createElement('div');
+        tag.className = 'platform-tag';
+        tag.textContent = platform;
+        card.prepend(tag);
+      });
+    }
+
     function toggleTheme() {
       document.body.classList.toggle('light');
+    }
+
+    function showNotification(text) {
+      const notification = document.createElement('div');
+      notification.className = 'platform-notification';
+      notification.textContent = `Plataforma: ${text}`;
+      document.body.appendChild(notification);
+      setTimeout(() => notification.remove(), 4000);
     }
 
     function filterExecutors() {
       const platform = document.getElementById("platformFilter").value;
       const executors = document.querySelectorAll(".executor-card");
+      
+      showNotification(platform || "Todas");
+      
       executors.forEach(card => {
         const cardPlatform = card.getAttribute("data-platform");
         card.style.display = (!platform || cardPlatform === platform) ? "block" : "none";
