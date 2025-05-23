@@ -11,6 +11,8 @@
       --card-bg: #1a132d;
       --primary: #9c5fff;
       --shadow: rgba(0, 0, 0, 0.3);
+      --recomendavel: #00ff88;
+      --banner-gradient: linear-gradient(45deg, #9c5fff, #7f45e2);
     }
 
     body.light {
@@ -18,6 +20,7 @@
       --text-color: #2a004f;
       --card-bg: #ffffff;
       --primary: #7e3bdc;
+      --recomendavel: #009944;
     }
 
     body {
@@ -84,7 +87,7 @@
 
     .banner-text {
       position: absolute;
-      top: 17%;
+      top: 11%;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -105,14 +108,8 @@
     }
 
     @keyframes fadeInPurple {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .platform-tag {
@@ -130,14 +127,8 @@
     }
 
     @keyframes slideIn {
-      from {
-        transform: translateX(20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(20px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
     .premium-badge {
@@ -153,62 +144,64 @@
       box-shadow: 0 2px 4px var(--shadow);
     }
 
+    .Recomendavel-badge {
+      background: var(--recomendavel);
+      color: #1a003a;
+      padding: 5px 15px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: -0.5rem auto 0.8rem;
+      animation: pulse 2s infinite;
+      box-shadow: 0 2px 8px rgba(0, 255, 136, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    body.light .Recomendavel-badge {
+      color: #002a15;
+    }
+
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
 
-    body.light .premium-badge {
-      background: #c5a100;
+    .platform-notification {
+      position: fixed;
+      top: calc(1rem + 45px);
+      left: 1rem;
+      background: var(--primary);
       color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px var(--shadow);
+      opacity: 0;
+      animation: sideNotify 4s ease-out;
+      z-index: 1000;
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: 80%;
     }
 
-.platform-notification {
-  position: fixed;
-  top: calc(1rem + 45px); /* Abaixo da barra superior */
-  left: 1rem;
-  background: var(--primary);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  box-shadow: 0 4px 15px var(--shadow);
-  opacity: 0;
-  animation: sideNotify 4s ease-out;
-  z-index: 1000;
-  pointer-events: none;
-  white-space: nowrap;
-  max-width: 80%;
-}
+    @keyframes sideNotify {
+      0% { opacity: 0; transform: translateX(-20px); }
+      20% { opacity: 1; transform: translateX(0); }
+      80% { opacity: 1; transform: translateX(0); }
+      100% { opacity: 0; transform: translateX(-20px); }
+    }
 
-@keyframes sideNotify {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  20% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  80% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-}
-
-@media (min-width: 768px) {
-  .platform-notification {
-    top: 1.5rem;
-    left: 200px; /* Alinhado com o seletor */
-    font-size: 1rem;
-    padding: 8px 16px;
-  }
-}
+    @media (min-width: 768px) {
+      .platform-notification {
+        top: 1.5rem;
+        left: 200px;
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+    }
 
     .container {
       max-width: 1200px;
@@ -230,6 +223,7 @@
       text-align: center;
       box-shadow: 0 6px 20px var(--shadow);
       transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
     }
 
     .executor-card:hover {
@@ -242,14 +236,20 @@
       margin-bottom: 1rem;
       border: 2px solid var(--primary);
       border-radius: 10px;
+      position: relative;
+      z-index: 2;
     }
 
     .executor-card h3 {
       margin: 0.5rem 0;
+      position: relative;
+      z-index: 2;
     }
 
     .executor-card p {
       font-size: 0.95rem;
+      position: relative;
+      z-index: 2;
     }
 
     .executor-card a {
@@ -261,10 +261,81 @@
       text-decoration: none;
       border-radius: 8px;
       transition: background 0.2s;
+      position: relative;
+      z-index: 2;
     }
 
     .executor-card a:hover {
       background: #7f45e2;
+    }
+
+    .card-banner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--banner-gradient);
+      z-index: 2;
+    }
+
+    .executor-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shine 4s infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    /* NOVO CARD DO DISCORD */
+    .discord-section {
+      text-align: center;
+      padding: 3rem 0;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      background: url('https://cdn.discordapp.com/attachments/1311484508003893398/1374147003336097867/standard_6.gif') center/cover;
+    }
+
+    .discord-card {
+      background: rgba(28, 25, 50, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      padding: 1.5rem 3rem;
+      border-radius: 15px;
+      text-decoration: none;
+      backdrop-filter: blur(5px);
+      border: 2px solid var(--primary);
+      transition: transform 0.3s;
+    }
+
+    .discord-card:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .discord-card img {
+      width: 50px;
+      height: 50px;
+      animation: pulse 2s infinite;
+    }
+
+    .discord-card span {
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
   </style>
 </head>
@@ -290,110 +361,148 @@
         src="https://cdn.discordapp.com/attachments/1311484508003893398/1374902118900564080/250px-Gatto_europeo4_1.jpg?ex=682fbce1&is=682e6b61&hm=dae76f8425853f6213dbdc14c9c1da80117d101ae049bfaa67dcdd4c22f1177c&"
         alt="Foto de perfil"
       />
-      <h1>SerioExec</h1>
+      <h1>SerioExecutores</h1>
       <p>🎖️Tem que respeita 🎖️</p>
     </div>
   </div>
 
   <div class="container">
     <div class="executors" id="executorList">
-      <!-- Lista de Executors -->
+      <!-- LISTA COMPLETA DE 14 EXECUTORES -->
       <div class="executor-card" data-name="Delta" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta" />
         <h3>Delta</h3>
+        <div class="Recomendavel-badge">🎖️ RECOMENDADO</div>
         <p>Executor top bem utimizado igual o fluxo!</p>
         <a href="https://deltaexploits.gg/android_dl" target="_blank" rel="noopener noreferrer">Instalar</a>
       </div>
-<div class="executor-card" data-name="Fluxus" data-platform="Android">
+
+      <div class="executor-card" data-name="Fluxus" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://images.icon-icons.com/3913/PNG/512/fluxus_logo_icon_248527.png" alt="Fluxus" />
         <h3>Fluxus</h3>
+        <div class="Recomendavel-badge">🎮 RECOMENDADO</div>
         <p>Executor Top, recomendo!</p>
         <a href="https://stickx.top/download/Fluxus.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
+
       <div class="executor-card" data-name="Codex" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6FzTc_eLrlpPNjYuMoa_2kBs4JcMzbiGuURQO1YxZjiA6pE9Koc58FWIg&s=10" alt="Codex" />
         <h3>Codex</h3>
         <p>Executor rápido para Android com interface amigável.</p>
         <a href="https://stickx.top/download/CodeX.apk" target="_blank" rel="noopener noreferrer">Baixar APK</a>
       </div>
+
       <div class="executor-card" data-name="Arceus X" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_FANfIiinyu5ccWXyA88ocVvpaOMaCiTQ3-OMXWPNzbCn4PKS0oQVVA&s=10" alt="Arceus X" />
         <h3>Arceus X Neo</h3>
+        <div class="Recomendavel-badge">🇺🇲 RECOMENDADO</div>
         <p>Executor popular de scripts para Roblox no Android.</p>
         <a href="https://stickx.top/download/ArceusX.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
+
       <div class="executor-card" data-name="Vega X" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYX9In5ZYK4Bz6tbTFUf6Y9qaqfn9GsqYbWrIVfzvALw&s" alt="Vega X" />
         <h3>Vega X</h3>
         <p>Executor leve e eficiente para Roblox no Android.</p>
         <a href="https://stickx.top/download/VegaX.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
+
       <div class="executor-card" data-name="Crypitc" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://avatars.githubusercontent.com/u/207789171?s=200&v=4" alt="Crypitc" />
         <h3>Crypitc</h3>
         <p>Executor Android moderno e com boa compatibilidade.</p>
         <a href="https://stickx.top/download/Cryptic.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
+
       <div class="executor-card" data-name="Krnl" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://avatars.githubusercontent.com/u/210202191?s=200&v=4" alt="Krnl" />
         <h3>Krnl</h3>
         <p>Versão Android do famoso executor KRNL.</p>
         <a href="https://stickx.top/download/Krnl.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
+
       <div class="executor-card" data-name="KrnlVNG" data-platform="Android">
+        <div class="card-banner"></div>
         <img src="https://avatars.githubusercontent.com/u/210202191?s=200&v=4" alt="KrnlVNG" />
         <h3>KrnlVNG</h3>
+        <div class="Recomendavel-badge">RECOMENDADO PARA VNG</div>
         <p>Modelo para gringos Viatina.</p>
         <a href="https://stickx.top/download/KrnlVNG.apk" target="_blank" rel="noopener noreferrer">Download</a>
       </div>
+
       <div class="executor-card" data-name="Delta iOS" data-platform="iOS">
+        <div class="card-banner"></div>
         <img src="https://delta-executor.com/wp-content/uploads/2023/04/Delta-Executor-official-logo.webp" alt="Delta iOS" />
         <h3>Delta iOS</h3>
+        <div class="Recomendavel-badge">📱 RECOMENDADO</div>
         <p>Executor para dispositivos iOS da linha Delta.</p>
         <a href="https://stickx.top/download/Deltax.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
       </div>
+
       <div class="executor-card" data-name="Arceus X iOS" data-platform="iOS">
+        <div class="card-banner"></div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_FANfIiinyu5ccWXyA88ocVvpaOMaCiTQ3-OMXWPNzbCn4PKS0oQVVA&s=10" alt="Arceus X iOS" />
         <h3>Arceus X iOS</h3>
+        <div class="Recomendavel-badge">🔥 TOP IOS</div>
         <p>Versão iOS do executor Arceus X para Roblox.</p>
         <a href="https://stickx.top/download/Arceusx.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
       </div>
+
       <div class="executor-card" data-name="Codex iOS" data-platform="iOS">
+        <div class="card-banner"></div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6FzTc_eLrlpPNjYuMoa_2kBs4JcMzbiGuURQO1YxZjiA6pE9Koc58FWIg&s=10" alt="Codex iOS" />
         <h3>Codex iOS</h3>
         <p>Executor Codex agora disponível para iOS.</p>
         <a href="https://stickx.top/download/Codex.ipa" target="_blank" rel="noopener noreferrer">Download iOS</a>
       </div>
+
       <div class="executor-card" data-name="Wave" data-platform="Windows">
+        <div class="card-banner"></div>
         <img src="https://pbs.twimg.com/profile_images/1775946212522496000/II3o8QCb_200x200.png" alt="Wave" />
         <h3>Wave</h3>
-        <div class="premium-badge">PREMIUM</div>
+        <div class="Recomendavel-badge">💎 PREMIUM RECOMENDADO</div>
         <p>Executor premium para PC com suporte a scripts complexos</p>
         <a href="https://getwave.gg/" target="_blank" rel="noopener noreferrer">Download PC</a>
       </div>
 
-      <!-- Outros executors Windows -->
       <div class="executor-card" data-name="SubZero" data-platform="Windows">
+        <div class="card-banner"></div>
         <img src="https://cdn.wearedevs.net/images/thumbnails/SubZero-051625.webp" alt="SubZero" />
         <h3>SubZero (Fluxo PC)</h3>
         <p>Versão PC do famoso executor Fluxus com interface aprimorada</p>
         <a href="https://getsubz.xyz/" target="_blank" rel="noopener noreferrer">Baixar</a>
       </div>
-<div class="executor-card" data-name="Nezur" data-platform="Windows">
-            <img src="https://framerusercontent.com/images/JHdhIcC3tGjhFhq5d2jB104VkR4.webp" alt="Nezur" />
-            <h3>Nezur</h3>
-            <p>Executor Windows estável para diversos jogos</p>
-            <a href="https://nezur.io/" target="_blank" rel="noopener noreferrer">Instalar</a>
-        </div>
 
-        <div class="executor-card" data-name="Xeno" data-platform="Windows">
-            <img src="https://cdn.wearedevs.net/images/thumbnails/xeno-0131252.webp" alt="Xeno" />
-            <h3>Xeno</h3>
-            <p>Executor poderoso para PC com atualizações constantes</p>
-            <a href="https://www.xeno.onl/download" target="_blank" rel="noopener noreferrer">Download</a>
-        </div>
-      <!-- ... (demais executors) ... -->
-      
+      <div class="executor-card" data-name="Nezur" data-platform="Windows">
+        <div class="card-banner"></div>
+        <img src="https://framerusercontent.com/images/JHdhIcC3tGjhFhq5d2jB104VkR4.webp" alt="Nezur" />
+        <h3>Nezur</h3>
+        <p>Executor Windows estável para diversos jogos</p>
+        <a href="https://nezur.io/" target="_blank" rel="noopener noreferrer">Instalar</a>
+      </div>
+
+      <div class="executor-card" data-name="Xeno" data-platform="Windows">
+        <div class="card-banner"></div>
+        <img src="https://cdn.wearedevs.net/images/thumbnails/xeno-0131252.webp" alt="Xeno" />
+        <h3>Xeno</h3>
+        <p>Executor poderoso para PC com atualizações constantes</p>
+        <a href="https://www.xeno.onl/download" target="_blank" rel="noopener noreferrer">Download</a>
+      </div>
+    </div>
+
+    <!-- SEÇÃO DISCORD COMPLETA -->
+    <div class="discord-section">
+      <a href="https://discord.gg/soulhunters" class="discord-card" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+        <span>Junte-se ao nosso Discord!</span>
+      </a>
     </div>
   </div>
 
@@ -429,9 +538,7 @@
     function filterExecutors() {
       const platform = document.getElementById("platformFilter").value;
       const executors = document.querySelectorAll(".executor-card");
-      
       showNotification(platform || "Todas");
-      
       executors.forEach(card => {
         const cardPlatform = card.getAttribute("data-platform");
         card.style.display = (!platform || cardPlatform === platform) ? "block" : "none";
